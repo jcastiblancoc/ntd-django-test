@@ -59,6 +59,20 @@ done || docker compose exec web python manage.py seeder 2>&1 | grep -E "(Startin
     log "SEEDER: $line"
 done
 
+# Run tests
+echo ""
+echo "Running tests..."
+log "TESTS: Starting test suite"
+if docker-compose exec -e DJANGO_SETTINGS_MODULE=django_crud.settings web pytest planets/tests/ -v 2>&1 | tee -a "$LOG_FILE"; then
+    log "TESTS: All tests passed successfully"
+    echo "All tests passed"
+else
+    log "TESTS: Tests failed"
+    echo "Tests failed. Check logs for details."
+    docker-compose down &> /dev/null || docker compose down &> /dev/null
+    exit 1
+fi
+
 echo ""
 echo "=========================================="
 echo "SUCCESS: API is running"
@@ -70,6 +84,7 @@ echo "Logs:        $LOG_FILE"
 echo ""
 echo "Useful commands:"
 echo "  View logs:   docker-compose logs -f web"
+echo "  Run tests:   docker-compose exec -e DJANGO_SETTINGS_MODULE=django_crud.settings web pytest planets/tests/ -v"
 echo "  Stop:        docker-compose down"
 echo "  Restart:     docker-compose restart web"
 echo ""
