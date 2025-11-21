@@ -154,3 +154,34 @@ The project uses environment variables from the `.env` file:
 **Jeisson Castiblanco Carrera**  
 Backend Software Engineer  
 castiblanco.jeisson@gmail.com
+
+---
+
+## Future Improvements
+
+Possible enhancements to extend the functionality of this project:
+
+### 1. Django Admin Interface
+
+- Enable and customize the Django admin panel for easy data management
+- Create custom admin views for Planet model with filters and search capabilities
+- Add inline editing for related fields
+- Implement custom actions for bulk operations
+
+### 2. Web Frontend with Django Templates
+
+- Build a complete web interface using Django templates
+- Create pages for:
+  - Planet list view with pagination
+  - Planet detail page with all information
+  - Forms for creating and editing planets
+  - Search and filter functionality
+- Add Bootstrap or Tailwind CSS for responsive design
+- Implement HTMX for dynamic interactions without full page reloads
+
+### 3. Additional Features
+
+- Add user authentication and authorization
+- Implement API rate limiting
+- Create data export functionality (CSV, JSON, PDF)
+- Implement CI/CD pipeline for automated testing and deployment
