@@ -75,6 +75,12 @@ If the script does not have execution permissions, use:
 chmod +x start.sh
 ```
 
+### Demo
+
+Watch the setup process in action:
+
+[![asciicast](https://asciinema.org/a/HhRRH99Dt1p7Byw5BzNmQStS3.svg)](https://asciinema.org/a/HhRRH99Dt1p7Byw5BzNmQStS3)
+
 The script will automatically:
 
 - Build Docker images
