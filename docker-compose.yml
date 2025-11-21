@@ -28,6 +28,7 @@ services:
       "
     volumes:
       - ./django_crud:/app
+      - ./logs:/app/logs
     ports:
       - "8000:8000"
     environment:
