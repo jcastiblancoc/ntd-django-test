@@ -1,47 +1,115 @@
 # Django Planets CRUD API
 
-RESTful API for planets data. Fetches data from an external GraphQL API and provides full CRUD operations.
+RESTful API for planet data. It fetches data from an external GraphQL API and provides full CRUD operations.
+
+---
+
+## Explanation of the Project
+
+This project provides a **RESTful API for planet data**, retrieving information from an external **GraphQL API** and exposing full CRUD operations.
+
+The backend is built with:
+
+- **Django 5.2.8**
+- **Django REST Framework 3.16.1**
+
+To ensure consistency and portability, the entire application runs inside **Docker** containers managed with **Docker Compose**, preventing environment-specific issues (including `.env` misconfiguration).
+
+---
+
+### Purpose
+
+The goal is to deliver a fully containerized Django REST API configured through environment variables. Once the repository is cloned and the `start.sh` script is executed, the services will be available at:
+
+- API endpoint: `http://localhost:8000/api/planets/`
+- Swagger UI: `http://localhost:8000/`
+- Application logs: `./logs/app.log`
+
+---
+
+### Features
+
+- List planets (paginated, 20 per page)
+- Retrieve planet details
+- Create a new planet
+- Update planet (full update)
+- Apply partial update
+- Delete a planet
+
+---
+
+### Additional Capabilities
+
+- Load 60 planets from an external GraphQL API
+- Run automated tests to validate the setup
+- Start Django development server via script
+- Generate automatic API documentation using **drf-spectacular** (Swagger UI)
+
+---
+
+### Quick Start
+
+**Clone the repository and run the `start.sh` script.**  
+It will build, start, test, and prepare the API automatically.
+
+---
 
 ## Requirements
 
 - Docker Desktop
 - Docker Compose
 
-## Quick Start
+---
+
+## Quick Start Command
+
+Run the following command in the root directory of the project:
 
 ```bash
-bash start.sh
+./start.sh
+```
+
+If the script does not have execution permissions, use:
+
+```bash
+chmod +x start.sh
 ```
 
 The script will automatically:
-- ✅ Build Docker images
-- ✅ Start PostgreSQL database
-- ✅ Run database migrations
-- ✅ Load planet data from external API (60 planets)
-- ✅ Start Django development server
+
+- Build Docker images
+- Start PostgreSQL database
+- Run database migrations
+- Load planet data from the external API (60 planets)
+- Run tests to validate setup
+- Start the Django development server
 
 **API available at:** http://localhost:8000/api/planets/  
 **Swagger UI at:** http://localhost:8000/
 
+---
+
 ## API Endpoints
 
-- `GET /api/planets/` - List all planets (paginated, 20 per page)
-- `GET /api/planets/{id}/` - Get planet details
-- `POST /api/planets/` - Create a new planet
-- `PUT /api/planets/{id}/` - Update planet (all fields)
-- `PATCH /api/planets/{id}/` - Partial update
-- `DELETE /api/planets/{id}/` - Delete planet
+- `GET /api/planets/` – List all planets (paginated, 20 per page)
+- `GET /api/planets/{id}/` – Get planet details
+- `POST /api/planets/` – Create a new planet
+- `PUT /api/planets/{id}/` – Full update
+- `PATCH /api/planets/{id}/` – Partial update
+- `DELETE /api/planets/{id}/` – Delete a planet
 
 ### Pagination
 
 Results are paginated with 20 items per page. Use `?page=2` to navigate:
 
-```bash
+```http
 GET /api/planets/?page=1
 GET /api/planets/?page=2
 ```
 
-## Data Model
+---
+
+## Data Model (Example Response)
 
 ```json
 {
@@ -54,30 +122,23 @@ GET /api/planets/?page=2
 }
 ```
 
-## Running Tests
-
-```bash
-# Run all tests
-docker-compose exec web pytest
-
-# Run with coverage
-docker-compose exec web pytest --cov=planets
-
-# Run specific test file
-docker-compose exec web pytest planets/tests/test_api.py
-```
+---
 
 ## Logs
 
 Application logs: `./logs/app.log`
 
+---
+
 ## Environment Variables
 
-The project uses environment variables configured in `docker-compose.yml`. For reference, see `.env.example` which lists all available variables:
+The project uses environment variables from the `.env` file:
 
-- `DEBUG` - Django debug mode
-- `PLANETS_URL` - External GraphQL API endpoint
-- `DATABASE_*` - PostgreSQL connection settings
+- `PLANETS_URL` – External GraphQL API endpoint
+- `DATABASE_*` – PostgreSQL connection settings
+- `POSTGRES_*` – PostgreSQL container configuration
+
+---
 
 ## Technology Stack
 
@@ -85,3 +146,11 @@ The project uses environment variables configured in `docker-compose.yml`. For r
 - PostgreSQL 15
 - Docker, Docker Compose
 - pytest for testing
+
+---
+
+## Author
+
+**Jeisson Castiblanco Carrera**  
+Backend Software Engineer  
+castiblanco.jeisson@gmail.com

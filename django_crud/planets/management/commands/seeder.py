@@ -47,10 +47,6 @@ class Command(BaseCommand):
             
             logger.info(f"Seeder completed: {created_count} created, {updated_count} updated")
             self.stdout.write(f"Loaded {len(planets)} planets")
-            
         except Exception as e:
             logger.error(f"Seeder failed: {str(e)}", exc_info=True)
             self.stdout.write(f"Error: {str(e)}")
-    
-
-
